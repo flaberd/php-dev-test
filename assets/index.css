@@ -121,3 +121,12 @@ main {
   font-size: 0.9rem;
   color: #444;
 }
+
+.product-image {
+  max-width: 100px;
+  border-radius: 0.25rem;
+}
+
+.order-summary__quantity {
+  text-align: center;
+}
