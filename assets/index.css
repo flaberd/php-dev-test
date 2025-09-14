@@ -111,3 +111,13 @@ main {
   border-bottom: 1px solid #eee;
   padding: 0.5rem;
 }
+
+.checkbox-field {
+  display: flex;
+  gap: 8px;
+}
+
+.checkbox-label {
+  font-size: 0.9rem;
+  color: #444;
+}
