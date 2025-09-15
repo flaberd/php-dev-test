@@ -24,8 +24,7 @@ class PostDetails extends Controller
             $context->title = 'Not Found';
             $context->content = "A post with id {$this->params[0]} was not found.";
         } else {
-            $context->title = $this->post->title;
-            $context->content = $this->params[0];
+            $context->post = $this->post;
         }
 
         return $context;
@@ -51,7 +50,11 @@ class PostDetails extends Controller
 
     protected function loadData(): void
     {
-        // TODO: Load post from database here. $this->params[0] is the post id.
-        $this->post = null;
+        $sql = 'SELECT posts.*, authors.full_name AS author_name FROM posts
+            JOIN authors ON posts.author = authors.id
+            WHERE posts.id = :id';
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([':id' => $this->params[0]]);
+        $this->post = $stmt->fetchObject(Model\Post::class);
     }
 }
