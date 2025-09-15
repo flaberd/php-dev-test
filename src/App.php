@@ -42,9 +42,11 @@ class App
         // Switch to set up different context data for different URLs.
         if (preg_match('@^/?$@', $path) === 1) {
             $controller = new Controller\Root($this->db, []);
-        } elseif (preg_match('@^/posts/?$@', $path) === 1) {
+        } elseif (preg_match('@^/import-data/?$@', $path) === 1) {
+            $controller = new Controller\ImportData($this->db, []);
+        }elseif (preg_match('@^/posts/?$@', $path) === 1) {
             $controller = new Controller\PostIndex($this->db, []);
-        } elseif (preg_match('@^/posts/([a-f0-9-]+)/?$@', $path, $params) === 1) {
+        }  elseif (preg_match('@^/posts/([a-f0-9-]+)/?$@', $path, $params) === 1) {
             array_shift($params);
             $controller = new Controller\PostDetails($this->db, $params);
         } elseif (preg_match('@^/checkout/?$@', $path) === 1) {
